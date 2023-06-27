@@ -27,7 +27,16 @@ def gpt(inp):
     )
     return completion
 
-
+############    GET CHATS BY USER ID ##################
+def get_chats(id):
+    path = str(os.getcwd())+'\\'+id+'.json'
+    isexist = os.path.exists(path)
+    if isexist:
+        data = pd.read_json(id+".json")
+        chats = data.chat
+        return  list(chats)
+    else:
+        return "No Chat found on this User ID."
 
 
 
@@ -90,7 +99,11 @@ def check_user():
         reply = check_user()
         return reply
 
-
+####################   NEW ENPOINT GET CHAT ##############################
+@app.route('/get_chats', methods=['POST'])
+def get_chatss():
+    ids = request.json['user_id']
+    return jsonpickle.encode(get_chats(ids))
 
 
 
