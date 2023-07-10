@@ -29,7 +29,7 @@ def gpt(inp):
 
 ############    GET CHATS BY USER ID ##################
 def get_chats(id):
-    path = str(os.getcwd())+'\\'+id+'.json'
+    path = str(os.getcwd())+'//'+id+'.json'
     isexist = os.path.exists(path)
     if isexist:
         data = pd.read_json(id+".json")
